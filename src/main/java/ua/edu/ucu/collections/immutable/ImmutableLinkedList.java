@@ -1,16 +1,25 @@
 package ua.edu.ucu.collections.immutable;
 
 public final class ImmutableLinkedList implements ImmutableList {
-    public ImmutableLinkedList(Object[] elements) {
+    Node head, tail;
 
+    public ImmutableLinkedList(Object[] elements) {
+        head = new Node(elements[0]);
+        Node prevNode = head, curNode;
+        for (int i = 1; i < elements.length; i++) {
+            curNode = new Node(prevNode, elements[i]);
+            prevNode.setNext(curNode);
+            prevNode = curNode;
+        }
+        tail = prevNode;
     }
 
     public ImmutableLinkedList() {
-
     }
 
     @Override
     public ImmutableList add(Object e) {
+
         return null;
     }
 
@@ -61,12 +70,26 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return head == null;
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        int length = 0;
+        Node curNode = head;
+        while (curNode != null) {
+            length++;
+            curNode = curNode.getNext();
+        }
+        Object[] objects = new Object[length];
+        int i = 0;
+        curNode = head;
+        while (curNode != null) {
+            objects[i] = curNode.getValue();
+            curNode = curNode.getNext();
+            i++;
+        }
+        return objects;
     }
 
     public ImmutableLinkedList addFirst(Object e) {
