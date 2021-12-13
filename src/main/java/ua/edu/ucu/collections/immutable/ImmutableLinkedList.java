@@ -4,6 +4,9 @@ public final class ImmutableLinkedList implements ImmutableList {
     private Node head, tail;
 
     public ImmutableLinkedList(Object[] elements) {
+        if (elements.length == 0) {
+            return;
+        }
         head = new Node(elements[0]);
         Node prevNode = head, curNode;
         for (int i = 1; i < elements.length; i++) {
@@ -118,6 +121,9 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     public Node getHead() {
+//        if (head == null) {
+//            throw new Exception("No head");
+//        }
         return head;
     }
 

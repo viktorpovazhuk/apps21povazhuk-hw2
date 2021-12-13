@@ -70,7 +70,7 @@ public class ImmutableLinkedListTest {
     }
 
     @Test
-    public void getHead() {
+    public void getHead() throws Exception {
         assertEquals(1, immutableLinkList.getHead().getValue());
     }
 
